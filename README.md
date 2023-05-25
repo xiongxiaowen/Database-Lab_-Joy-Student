@@ -2,11 +2,11 @@
 Joy Student is a student information management system. 
 
 
-Välipalautus 1/ Submission 1  
+Vï¿½lipalautus 1/ Submission 1  
 This public repository on GitHub was created for the practice work of course Tietokantasovellus. 
 The topic I choose is to create a simple student information management system, named Joy Student. 
 
-The system can be used by a school or university to manage student’s data. Features of the application include:
+The system can be used by a school or university to manage studentï¿½s data. Features of the application include:
 1.	the user can log in and out, and create a new user account. 
 2.	The user can use form to submit info, and form elements are mainly text fields and checkboxes.
 3.	Each user is a basic user who can login to resubmit or modify the data. 
@@ -14,9 +14,34 @@ The system can be used by a school or university to manage student’s data. Featu
 5.	The web application should be able to display the registered student's name, gender, faculty, student number, and address. 
 	Those are the information the user can view after submitting information in the form. 
 
-This web application can be enhanced by adding further features or functions, like provide a field for submitting student’s email address, 
+This web application can be enhanced by adding further features or functions, like provide a field for submitting studentï¿½s email address, 
 The language used in programming will be English. In order to ensure the language consistency, all documents in this course will also be in English.
 Hopefully this README.md file gives a good description of this web application. 
 If this topic is not appropriate according to the course requirement, please feel free to comment or suggest modifications. 
+
+Thank you! 
+
+
+
+VÃ¤lipalautus 2/ Submission 2
+Programming work started after the 1st submission. Target is to program the application that it has a functional foundation. Few problems have been fixed by practice. For example, PostgreSQL database was not able to find the server after installation, configuring the database connections was hard in the beginning as the local servers can not display html pages. 
+
+Features of the application refined after the 1st submission: 
+1.	the user can log in and log out, and create a new user account. 
+2.	The user can use form to submit info, and form elements are mainly text fields and checkboxes.
+3.	Each user is a basic user who can login to resubmit or modify the data. 
+4.	Total 5 webpages will be visible for the user: homepage(index.html) offering two options (create account or login), login page for users who have already account credentials, register page for those who needs to create account, result page for users to view registered info, error page to display the failed operations.
+5.	The web application should be able to display the registered student's name, gender, faculty, student number, and address. Those are the information the user can view and modify after submitting information in the form. 
+
+Structure and completed files till now: 
+1.	app.py is the main module of the application, which launches the application. 
+2.	The module db.py takes care of things related to the database. In this application, this module determines the address of the database and creates a db object through which the database can be accessed.
+3.	The task of module routes.py is to process page requests. 
+4.	Users.py module is used to handle users data management.
+5.	Error, index, login, register total 4 html pages created in templates folder. Result page after registration still to be done.
+6.	The connection between pages still to be done so that page is able to jump to next page. 
+
+How to startup the application: 
+Navigate to the project file directory in local device, use command line enter flask run, the webpage content will be visible by visiting the local host address: http://127.0.0.1:5000/
 
 Thank you! 
