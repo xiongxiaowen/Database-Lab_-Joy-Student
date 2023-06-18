@@ -1,0 +1,32 @@
+{% extends "layout.html" %}
+{% block content %}
+
+<h2> Update your user info </h2>
+<form action="/edit/{{ user.id }}" method="POST">
+    <p>Please type your username: <br><input type="text" name="username" minlength="1" maxlength="20" value="{{ user.username }}"></p>
+    
+    <p>Please type your password: <br><input type="password" name="password"></p>
+    
+    <br>
+    <br>
+    <label for="name">Name:</label>
+    <input type="text" id="name" name="name" required value="{{ user.name }}"><br><br>
+
+    <label for="gender">Gender:</label>
+    <input type="radio" name="gender" value="Female" {% if user.gender == 'Female' %}checked{% endif %} required> Female
+    <input type="radio" name="gender" value="Male" {% if user.gender == 'Male' %}checked{% endif %} required> Male<br><br>
+
+    <label for="faculty">Faculty:</label>
+    <input type="radio" name="faculty" value="Education" {% if user.faculty == 'Education' %}checked{% endif %} required> Education
+    <input type="radio" name="faculty" value="Arts" {% if user.faculty == 'Arts' %}checked{% endif %} required> Arts<br><br>
+
+    <label for="student_number">Student Number:</label>
+    <input type="text" id="student_number" name="student_number" required value="{{ user.student_number }}"><br><br>
+
+    <label for="address">Address:</label>
+    <textarea id="address" name="address" rows="4" required>{{ user.address }}</textarea><br><br>
+
+    <input type="submit" value="Update">
+</form>
+
+{% endblock %}

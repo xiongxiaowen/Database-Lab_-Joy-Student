@@ -1,7 +1,8 @@
-<title>Register</title>
-<h1>Registeration</h1>
+{% extends "layout.html" %}
+{% block content %}
+
+<h2>Registration</h2>
 <form action="/register" method="POST">
-    
     <p>Please type your username: <br><input type="text" name="username" minlength="1" maxlength="20"></p>
     
     <p>Please type your password: <br><input type="password" name="password1"></p>
@@ -12,13 +13,11 @@
     <label for="name">Name:</label>
     <input type="text" id="name" name="name" required><br><br>
 
-    <label for="gender">Gender:</label>
-    <input type="radio" name="gender" value="Female" required> Female
-    <input type="radio" name="gender" value="Male" required> Male<br><br>
+    <label for="gender">Gender(fill "Female", "Male" or "Not want to tell"):</label>
+    <input type="text" id="name" name="name" required><br><br>
 
     <label for="faculty">Faculty:</label>
-    <input type="radio" name="faculty" value="Education" required> Education
-    <input type="radio" name="faculty" value="Arts" required> Arts<br><br>
+    <input type="text" id="name" name="name" required><br><br>
 
     <label for="student_number">Student Number:</label>
     <input type="text" id="student_number" name="student_number" required><br><br>
@@ -28,3 +27,7 @@
 
     <input type="submit" value="Register">
 </form>
+
+<a href="/login">Back</a>
+
+{% endblock %}

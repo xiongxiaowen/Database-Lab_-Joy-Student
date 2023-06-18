@@ -1,1 +1,18 @@
-You have logged in!
+{% extends "layout.html" %}
+{% block content %}
+
+<h2>Login</h2>
+
+<form action="/login" method="post">
+Username: <br><input type="text" name="username">
+<p>
+Password: <br><input type="password" name="password">
+<p>
+<input type="submit" value="Login">
+</form>
+Have no username yet, you can create your username <a href="/register">here</a>
+
+<p>
+<a href="/">Back</a>
+
+{% endblock %}

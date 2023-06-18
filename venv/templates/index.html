@@ -1,4 +1,27 @@
-<title>Homepage</title>
-<h3>Welcome to  Joy Student  information management system!</h3>
+{% extends "layout.html" %}
+{% block content %}
 
-<P>You can <strong>log in </strong>, or <strong>create </strong> user account if you don't have an account yet. </P>
+<h2>Homepage<h2>
+<h3>Welcome to Joy Student information management system!</h3>
+
+
+Messages received: {{ count }}
+<hr>
+{% for message in messages %}
+<i>Message:</i> {{ message[0] }}
+<p>
+<i>Sender:</i> {{ message[1] }}
+<p>
+<i>Time:</i> {{ message[2].strftime("%Y-%m-%d %H:%M:%S") }}
+<hr>
+
+{% endfor %}
+{% if session.user_id %}
+You have logged in <b>{{session.user_name}}</b>. 
+<a href="/new">Send messages</a> | <a href="/logout">Logout</a>
+{% else %}
+You have not logged in. Click here to login: <a href="/login">Log in</a>
+{% endif %}
+
+
+{% endblock %}

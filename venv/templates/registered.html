@@ -1,0 +1,24 @@
+{% extends "layout.html" %}
+{% block content %}
+
+<h2>Registered User</h2>
+
+<ul>
+    {% for user in users %}
+    <li>
+        <strong>Username:</strong> {{ user.username }}<br>
+        <strong>Name:</strong> {{ user.name }}<br>
+        <strong>Gender:</strong> {{ user.gender }}<br>
+        <strong>Faculty:</strong> {{ user.faculty }}<br>
+        <strong>Student Number:</strong> {{ user.student_number }}<br>
+        <strong>Address:</strong> {{ user.address }}<br>
+        <a href="/edit/{{ user.id }}">Edit</a> |
+        <a href="/delete/{{ user.id }}">Delete</a>
+        <a href="/new">Send messages</a> | <a href="/logout">Logout</a>
+    </li>
+    {% endfor %}
+</ul>
+
+<a href="/register">Go back to Registration</a>
+
+{% endblock %}
