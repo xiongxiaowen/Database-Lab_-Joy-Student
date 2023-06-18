@@ -1,0 +1,19 @@
+body {
+    margin: auto;
+    max-width: 45em;
+    font-family: Arial, Helvetica, sans-serif;
+    line-height: 1.5;
+    padding: 4em 1em;
+    color: #040873;
+    background-color: rgb(233, 230, 219);
+}
+
+h2 {
+    margin-top: 1em;
+    padding-top: 1em;
+    color: #120f9f;
+}
+
+table {
+    width: 80%;
+}
