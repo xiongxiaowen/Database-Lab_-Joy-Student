@@ -46,3 +46,28 @@ How to startup the application:
 Navigate to the project file directory in local device, use command line enter flask run, the webpage content will be visible by visiting the local host address: http://127.0.0.1:5000/
 
 Thank you! 
+
+
+
+Välipalautus 3/ Submission 3
+
+Add a new feature that users can send messages, which is similar as a chat application. requirements.txt and schema.sql files pushed to Github.
+
+Currently the program’s frame and main operations can work well, still need to improve the functionability. The user interface and appearance of the application are finished. The major part of application works when the user tests it. It is clear to the user what the functions of the application do. If the user provides incorrect information, a clear notification will appear.
+
+The application can only be tested locally as follows: 
+1). Clone the repository to local device. 
+2). Create an .env file there.
+3). Specify its contents:
+DATABASE_URL='database-local-url'
+SECRET_KEY='secret-key'
+4). Activate the virtual environment and install the dependencies:
+python3 -m venv venv
+source venv/bin/activate (“venv” visible in front of the command line)
+pip install -r ./requirements.txt
+5). Define the database schema: psql < schema.sql
+6). Startup with the command: flask run
+
+Thank you!
+
+
