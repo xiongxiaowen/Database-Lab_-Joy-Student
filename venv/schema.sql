@@ -8,11 +8,7 @@ CREATE TABLE users (
 CREATE TABLE usersinfo (
   id SERIAL PRIMARY KEY,
   user_id INTEGER REFERENCES users,
-  users_name TEXT NOT NULL,
-  gender TEXT NOT NULL,
-  faculty TEXT NOT NULL,
-  student_number TEXT NOT NULL,
-  address_user TEXT NOT NULL
+  users_name TEXT NOT NULL
 );
 
 CREATE TABLE messages (
@@ -20,4 +16,17 @@ CREATE TABLE messages (
     content TEXT,
     user_id INTEGER REFERENCES users,
     sent_at TIMESTAMP
+);
+
+"""
+CREATE TABLE friends (
+    id SERIAL PRIMARY KEY,
+    user_id INTEGER REFERENCES users,
+    friend_id INTEGER REFERENCES users
+);
+"""
+CREATE TABLE likes (
+    id SERIAL PRIMARY KEY,
+    user_id INTEGER REFERENCES users,
+    post_id INTEGER REFERENCES messages,
 );
