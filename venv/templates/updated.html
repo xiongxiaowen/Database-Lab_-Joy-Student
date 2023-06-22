@@ -1,0 +1,17 @@
+{% extends "layout.html" %}
+
+{% if session.user_id %}
+You have logged in <b>{{session.user_name}}</b>. 
+{% else %}
+You have not logged in. Click here to login: <a href="/login">Log in</a>
+{% endif %}
+
+{% block content %}
+  <h1>Updated Successfully</h1>
+  <p>The username and password have been updated.</p>
+  <p><strong>Username:</strong> {{ username }}</p>
+  <p><strong>Password:</strong> {{ password }}</p>
+
+  <p><a href="/new">Send messages to chat</a>
+    <p><a href="/logout">Logout</a>
+{% endblock %}

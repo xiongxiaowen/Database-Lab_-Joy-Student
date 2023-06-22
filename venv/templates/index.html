@@ -3,24 +3,40 @@
 
 <h2>Homepage<h2>
 <h3>Welcome to Joy Student information management system!</h3>
-
-
-Messages received: {{ count }}
+<i>You can register your information and chat with with others students if you have any questions!</i>
+<p>
+<p>
+<strong>Messages received:</strong> {{ count }}
 <hr>
 {% for message in messages %}
-<i>Message:</i> {{ message[0] }}
+<i>Message:</i> {{ message[1] }}
 <p>
-<i>Sender:</i> {{ message[1] }}
+<i>Sender:</i> {{ message[2] }}
 <p>
-<i>Time:</i> {{ message[2].strftime("%Y-%m-%d %H:%M:%S") }}
-<hr>
+<i>Time:</i> {{ message[3].strftime("%Y-%m-%d %H:%M:%S") }}
+<p>Likes: {{ message.like_count }}</p>
 
+<form action="/like/{{ message.id }}" method="POST">
+    {% if user_id != 0 %}
+      {% if liked_messages.get(message.id) %}
+        <button type="submit" name="unlike">Unlike</button>
+      {% else %}
+        <button type="submit" name="like">Like</button>
+      {% endif %}
+    {% else %}
+      <a href="/login">Login to Like</a>
+    {% endif %}
+  </form>
+</div>
+<hr>
 {% endfor %}
+
+
 {% if session.user_id %}
-You have logged in <b>{{session.user_name}}</b>. 
-<a href="/new">Send messages</a> | <a href="/logout">Logout</a>
-|
+<strong>You have logged in <b>{{session.user_name}}</b>. 
+<a href="/new">Send messages</a> | <a href="/logout">Logout</a>|
 <a href="/registered">Check registration info</a>
+</strong>
 {% else %}
 You have not logged in. Click here to login: <a href="/login">Log in</a>
 {% endif %}
