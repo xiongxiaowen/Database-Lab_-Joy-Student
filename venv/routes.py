@@ -1,6 +1,7 @@
 from app import app
 from flask import render_template, request, redirect
-import users, messages
+from werkzeug.security import generate_password_hash
+import users, messages, register_user_info
 
 @app.route("/")
 def index():
@@ -57,11 +58,44 @@ def register():
         if password1 == "":
             return render_template("error.html", message="Password field empty, please enter password")
         # register the user
-        if users.register(username, password1):
-            return redirect("/")
+        user_id = users.register(username, password1)
+        if user_id is not None:
+            return redirect(f"/fillup/{user_id}")
         else:
             return render_template("error.html", message="Registration not successful")
 
+
+@app.route("/fillup/<int:user_id>", methods=["GET", "POST"])
+def fillup(user_id):
+    if request.method == "GET":
+        if "user_id" in session:
+            session_user_id = session["user_id"]
+            session_user_name = users.get_user_by_id(session_user_id).username
+            return render_template("fillup.html", session_user_name=session_user_name)
+        else:
+            return redirect("/login")
+
+    elif request.method == "POST":
+        name = request.form["name"]
+        gender = request.form["gender"]
+        faculty = request.form["faculty"]
+        student_number = request.form["student_number"]
+        address = request.form["address"]
+        if register_user_info.save_user_info(user_id, name, gender, faculty, student_number, address):
+            return redirect(f"/registered/{user_id}")
+        else:
+            return render_template("error.html", message="Failed to save user information")
+
+
+@app.route("/registered/<int:user_id>")
+def registered(user_id):
+    user = users.get_user_by_id(user_id)
+    if user:
+        user_info = register_user_info.get_user_by_id(user_id)
+        return render_template("registered.html", user=user, user_info=user_info)
+    else:
+        return render_template("error.html", message="User not found") 
+    
 
 @app.route("/edit/<int:user_id>", methods=["GET", "POST"])
 def edit(user_id):
