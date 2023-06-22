@@ -19,6 +19,8 @@ Messages received: {{ count }}
 {% if session.user_id %}
 You have logged in <b>{{session.user_name}}</b>. 
 <a href="/new">Send messages</a> | <a href="/logout">Logout</a>
+|
+<a href="/registered">Check registration info</a>
 {% else %}
 You have not logged in. Click here to login: <a href="/login">Log in</a>
 {% endif %}

@@ -1,7 +1,7 @@
 {% extends "layout.html" %}
 {% block content %}
 
-<h2>Registration</h2>
+<h2>Register as a user</h2>
 <form action="/register" method="POST">
     <p>Please type your username: <br><input type="text" name="username" minlength="1" maxlength="20"></p>
     
@@ -10,20 +10,6 @@
     <p>Please type your password again: <br><input type="password" name="password2"></p>
     <br>
     <br>
-    <label for="name">Name:</label>
-    <input type="text" id="name" name="name" required><br><br>
-
-    <label for="gender">Gender(fill "Female", "Male" or "Not want to tell"):</label>
-    <input type="text" id="name" name="name" required><br><br>
-
-    <label for="faculty">Faculty:</label>
-    <input type="text" id="name" name="name" required><br><br>
-
-    <label for="student_number">Student Number:</label>
-    <input type="text" id="student_number" name="student_number" required><br><br>
-
-    <label for="address">Address:</label>
-    <textarea id="address" name="address" rows="4" required></textarea><br><br>
 
     <input type="submit" value="Register">
 </form>

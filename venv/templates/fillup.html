@@ -1,0 +1,33 @@
+{% extends "layout.html" %}
+{% block content %}
+
+<h2>Registration/ fill your personal info</h2>
+{% if session.user_id %}
+You have logged in <b>{{session.user_name}}</b>.
+
+{% else %}
+You have not logged in. Click here to login: <a href="/login">Log in</a>
+{% endif %}
+
+<form action="/fillup" method="POST">
+    <label for="name">Name:</label>
+    <input type="text" id="name" name="name" required><br><br>
+
+    <label for="gender">Gender (fill "Female", "Male", or "Not want to tell"):</label>
+    <input type="text" id="gender" name="gender" required><br><br>
+
+    <label for="faculty">Faculty:</label>
+    <input type="text" id="faculty" name="faculty" required><br><br>
+
+    <label for="student_number">Student Number:</label>
+    <input type="text" id="student_number" name="student_number" required><br><br>
+
+    <label for="address">Address:</label>
+    <textarea id="address" name="address" rows="4" required></textarea><br><br>
+
+    <input type="submit" value="Register">
+</form>
+
+<a href="/login">Back</a>
+
+{% endblock %}
