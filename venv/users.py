@@ -4,9 +4,10 @@ from flask import session
 from werkzeug.security import check_password_hash, generate_password_hash
 from sqlalchemy import text
 
+
 def login(username, password):
-    sql = "SELECT id, password FROM users WHERE username=:username"
-    result = db.session.execute(text(sql), {"username":username})
+    sql = text("SELECT id, password FROM users WHERE username=:username")
+    result = db.session.execute(sql, {"username":username})
     user = result.fetchone()
     if not user:
         return False
@@ -23,7 +24,7 @@ def logout():
 def register(username, password):
     hash_value = generate_password_hash(password)
     try:
-        sql = "INSERT INTO users (username, password) VALUES (:username, :password)"
+        sql = text("INSERT INTO users (username, password) VALUES (:username, :password)")
         db.session.execute(sql, {"username":username, "password":hash_value})
         db.session.commit()
     except:
@@ -36,24 +37,25 @@ def user_id():
 
 def get_all_users():
     #executes a SQL query to fetch the users' data from the "users" table in the database. 
-    sql = "SELECT * FROM users"
-    result = db.session.execute(text(sql))
+    sql = text("SELECT * FROM users")
+    result = db.session.execute(sql)
     users = result.fetchall()
     return users
 
+#function to fetch the user by ID
 def get_user_by_id(user_id):
-    sql = "SELECT * FROM users WHERE id=:user_id"
-    result = db.session.execute(text(sql), {"user_id": user_id})
+    sql = text("SELECT * FROM users WHERE id=:user_id")
+    result = db.session.execute(sql, {"user_id": user_id})
     user = result.fetchone()
     return user
 
 def update_user(user_id, username, password):
     hash_value = generate_password_hash(password)
-    sql = "UPDATE users SET username=:username, password=:password WHERE id=:user_id"
-    db.session.execute(text(sql), {"username": username, "password": hash_value, "user_id": user_id})
+    sql = text("UPDATE users SET username=:username, password=:password WHERE id=:user_id")
+    db.session.execute(sql, {"username": username, "password": hash_value, "user_id": user_id})
     db.session.commit()
 
 def delete_user(user_id):
-    sql = "DELETE FROM users WHERE id=:user_id"
-    db.session.execute(text(sql), {"user_id": user_id})
+    sql = text("DELETE FROM users WHERE id=:user_id")
+    db.session.execute(sql, {"user_id": user_id})
     db.session.commit()
