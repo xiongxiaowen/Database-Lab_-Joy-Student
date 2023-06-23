@@ -2,12 +2,6 @@ from db import db
 import users, like
 from sqlalchemy import text
 
-"""
-def get_list():
-    sql = text("SELECT M.content, U.username, M.sent_at FROM messages M, users U WHERE M.user_id=U.id ORDER BY M.id")
-    result = db.session.execute(sql)
-    return result.fetchall()
-"""
 
 def get_list():
     sql = text("SELECT M.id, M.content, U.username, M.sent_at, COUNT(L.id) AS like_count "
