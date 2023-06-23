@@ -3,9 +3,14 @@
 
 <h2>Homepage<h2>
 <h3>Welcome to Joy Student information management system!</h3>
-<i>You can register your information and chat with with others students if you have any questions!</i>
+<i>You can register your personal information and chat with other students in below open forum.</i>
+<br>
+<i>You can like the messages posted in the forum by clicking like button, or cancel the like by another clicking.</i>
+<br>
+<i>You can add other students into your friend list, which is only visible for yourself.</i>
 <p>
-<p>
+<br>
+<br>
 <strong>Messages received:</strong> {{ count }}
 <hr>
 {% for message in messages %}
@@ -35,7 +40,7 @@
 {% if session.user_id %}
 <strong>You have logged in <b>{{session.user_name}}</b>. 
 <a href="/new">Send messages</a> | <a href="/logout">Logout</a>|
-<a href="/registered">Check registration info</a>
+<a href="/registered">Check registration info & find friend</a>
 </strong>
 {% else %}
 You have not logged in. Click here to login: <a href="/login">Log in</a>

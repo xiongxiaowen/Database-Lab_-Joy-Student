@@ -1,0 +1,22 @@
+{% extends "layout.html" %}
+{% block content %}
+
+<h2>Update Registered Data</h2>
+
+<form action="/update" method="POST">
+  <label for="name">Name:</label>
+  <input type="text" id="name" name="name" value="{{ user_info.users_name }}" required><br><br>
+
+  <label for="degree_program">Degree Program:</label>
+  <input type="text" id="degree_program" name="degree_program" value="{{ user_info.degree_program }}" required><br><br>
+
+  <label for="faculty">Faculty:</label>
+  <input type="text" id="faculty" name="faculty" value="{{ user_info.faculty }}" required><br><br>
+
+  <label for="address">Address:</label>
+  <input type="text" id="address" name="address" value="{{ user_info.address }}" required><br><br>
+
+  <input type="submit" value="Update">
+</form>
+
+{% endblock %}

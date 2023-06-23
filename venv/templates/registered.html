@@ -1,3 +1,4 @@
+
 {% extends "layout.html" %}
 {% block content %}
 
@@ -11,17 +12,39 @@ You have logged in <b>{{session.user_name}}</b>.
 You have not logged in. Click here to login: <a href="/login">Log in</a>
 {% endif %}
 
-<p><i><strong>Your user ID and your name:</strong></i> {{ name }}</p>
+<p>Click Updating Registration to update your personal information </p>
+<a href="/update">Updating Registration</a>
 <br>
 <br>
-<p>If you haven't registered your personal info, Click Registration to fillup the form </p>
-<a href="/fillup">Registration</a>
+<p><i><strong>Your User ID:</strong></i> {{ user.user_id }}</p>
+<p><strong>Name:</strong> {{ user.users_name }}</p>
+<p><strong>Degree Program:</strong> {{ user.degree_program }}</p>
+<p><strong>Faculty:</strong> {{ user.faculty }}</p>
+<p><strong>Address:</strong> {{ user.address }}</p>
 <br>
 <br>
-<p><a href="/edit/{{ session['user_id'] }}">Edit</a></p>
+<br>
+<p><i><strong>If you just registered as a user, you are the newest user in this system, your User ID indicates the ammount of users.</strong></i>
+<p><i><strong>If you know another student's user ID, You can add them as your friend below</strong></i>
+<form action="/add_friend" method="POST">
+    <label for="friend_id">Friend's User ID:</label>
+    <input type="text" id="friend_id" name="friend_id" required>
+    <input type="submit" value="Add Friend">
+</form>
+ 
+  <h3>Your Friends's ID and Name:</h3>
+  <ul>
+    {% for friend in friends %}
+    <li>{{ friend }}</li>
+    {% endfor %}
+  </ul>
+<br>
+<br>
+
+<p><a href="/edit/{{ session['user_id'] }}">Edit your user account</a></p>
 <p><a href="/new">Send messages to chat</a>
-<p><a href="/logout">Logout</a>
-
-<p>Caution: Click Delete, you will delete your username and user account <a href="/delete/{{ session['user_id'] }}">Delete</a>
-
+<p><a href="/logout">Logout & back to Homepage</a>
+<br>
+<p>Caution: Click Delete info, you will delete registered personal information, but your User ID and name remains <a href="/delete/{{ session['user_id'] }}">Delete info</a>
+ 
 {% endblock %}
