@@ -1,4 +1,3 @@
-
 CREATE TABLE users (
   id SERIAL PRIMARY KEY,
   username TEXT UNIQUE NOT NULL,
@@ -7,26 +6,28 @@ CREATE TABLE users (
 
 CREATE TABLE usersinfo (
   id SERIAL PRIMARY KEY,
-  user_id INTEGER REFERENCES users,
-  users_name TEXT NOT NULL
+  user_id INTEGER UNIQUE REFERENCES users(id),
+  users_name TEXT NOT NULL,
+  degree_program TEXT,
+  faculty TEXT,
+  address TEXT
+);
+
+CREATE TABLE friends (
+    id SERIAL PRIMARY KEY,
+    user_id INTEGER REFERENCES usersinfo(user_id),
+    friend_id INTEGER REFERENCES usersinfo(user_id)
 );
 
 CREATE TABLE messages (
     id SERIAL PRIMARY KEY,
     content TEXT,
-    user_id INTEGER REFERENCES users,
+    user_id INTEGER REFERENCES users(id),
     sent_at TIMESTAMP
 );
 
-"""
-CREATE TABLE friends (
-    id SERIAL PRIMARY KEY,
-    user_id INTEGER REFERENCES users,
-    friend_id INTEGER REFERENCES users
-);
-"""
 CREATE TABLE likes (
     id SERIAL PRIMARY KEY,
-    user_id INTEGER REFERENCES users,
-    post_id INTEGER REFERENCES messages,
+    user_id INTEGER REFERENCES users(id),
+    post_id INTEGER REFERENCES messages(id)
 );
