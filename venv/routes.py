@@ -1,7 +1,9 @@
 from app import app
 from flask import render_template, request, redirect, session
 from werkzeug.security import generate_password_hash
-import users, messages, register_user_info, like
+import users, messages, register_user_info, like, friend
+from register_user_info import get_user_by_id
+from users import get_user_by_id
 
 @app.route("/")
 def index():
@@ -74,8 +76,11 @@ def fillup():
 
         if request.method == "POST":
             name = request.form["name"]
+            degree_program = request.form["degree_program"]
+            faculty = request.form["faculty"]
+            address = request.form["address"]
           
-            if register_user_info.save_user_info(user_id, name):
+            if register_user_info.save_user_info(user_id, name, degree_program, faculty, address):
                 return redirect("/registered")
             else:
                 return render_template("error.html", message="Failed to save user information")
@@ -87,9 +92,10 @@ def fillup():
 def registered():
     user_id = users.user_id()
     if "user_id" in session:
-        name = register_user_info.get_user_by_id(user_id)
+        user_info = register_user_info.get_user_by_id(user_id)
         username = session.get("username")
-        return render_template("registered.html", username=username, name=name)
+        friends = friend.get_friends(user_id)
+        return render_template("registered.html", username=username, user=user_info, friends=friends)
     else:
         return render_template("error.html", message="User not found") 
 
@@ -104,6 +110,26 @@ def edit(user_id):
         password = request.form["password"]
         users.update_user(user_id, username, password)
         return render_template("/updated.html", username=username, password=password)
+
+@app.route("/update", methods=["GET", "POST"])
+def update():
+    user_id = users.user_id()
+    if "user_id" in session:
+        if request.method == "GET":
+            user_info = register_user_info.get_user_by_id(user_id)
+            return render_template("update.html", user_info=user_info)
+        elif request.method == "POST":
+            name = request.form["name"]
+            degree_program = request.form["degree_program"]
+            faculty = request.form["faculty"]
+            address = request.form["address"]
+            
+            if register_user_info.update_user_info(user_id, name, degree_program, faculty, address):
+                return redirect("/registered")
+            else:
+                return render_template("error.html", message="Failed to update user information")
+    else:
+        return render_template("error.html", message="User not found")
 
 
 @app.route("/delete/<int:user_id>")
@@ -120,3 +146,22 @@ def like_message_route(message_id):
         like.like_message(message_id)
 
     return redirect("/")
+
+@app.route("/add_friend", methods=["POST"])
+def add_friend():
+    user_id = users.user_id()
+    friend_id = request.form["friend_id"]
+    if not friend_id:
+        # Handle the case when the friend ID is not provided
+        return redirect("/registered")
+        
+    if "user_id" in session:
+        friend_exists = users.get_user_by_id(friend_id)
+        if friend_exists:
+            friend.add_friend(user_id=user_id, friend_id=friend_id)
+        else:
+            return render_template("error.html", message="The specified friend ID does not exist.")
+    else:
+        return render_template("error.html", message="User not authenticated.") 
+    
+    return redirect("/registered")
