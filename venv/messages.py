@@ -1,9 +1,16 @@
-from db import db
-import users, like
+"""
+This module for message functions 
+"""
 from sqlalchemy import text
+from db import db
+import users
+
 
 
 def get_list():
+    """
+    display messages to the list on the homepage, as a public forum. 
+    """
     sql = text("SELECT M.id, M.content, U.username, M.sent_at, COUNT(L.id) AS like_count "
                "FROM messages M "
                "JOIN users U ON M.user_id = U.id "
@@ -12,8 +19,12 @@ def get_list():
                "ORDER BY M.id")
     result = db.session.execute(sql)
     return result.fetchall()
-    
+
+
 def send(content):
+    """
+    send user's message content to the homepage, the public forum. 
+    """
     user_id = users.user_id()
     if user_id == 0:
         return False

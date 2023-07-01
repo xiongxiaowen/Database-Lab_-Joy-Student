@@ -1,3 +1,6 @@
+"""
+This module for Flask application instance. 
+"""
 from flask import Flask
 from os import getenv
 

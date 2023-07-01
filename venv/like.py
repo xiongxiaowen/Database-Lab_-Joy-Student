@@ -1,12 +1,19 @@
+"""
+This module for like functions 
+"""
+from sqlalchemy import text
 from db import db
 import users
-from sqlalchemy import text
+
 
 def like_message(message_id):
+    """
+    allow to like message. 
+    """
     user_id = users.user_id()
     # User is not logged in, cannot like message
     if user_id == 0:
-        return False  
+        return False
 
     sql = text("SELECT id FROM likes WHERE user_id = :user_id AND post_id = :message_id")
     result = db.session.execute(sql, {"user_id": user_id, "message_id": message_id})
