@@ -11,6 +11,9 @@
     <br>
 
     <input type="submit" value="Update">
+    <input type="hidden" name="csrf_token" value="{{ session.csrf_token }}">
+    <br>
+    <a href="/registered">Back</a>
 </form>
 
 {% endblock %}

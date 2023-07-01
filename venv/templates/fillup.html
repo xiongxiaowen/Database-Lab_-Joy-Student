@@ -1,13 +1,13 @@
 {% extends "layout.html" %}
 {% block content %}
 
-<h2>Registration/ fill your personal info</h2>
+<h2>Save / fill your personal info</h2>
 {% if session.user_id %}
 You have logged in <b>{{session.user_name}}</b>. 
 <p>
-Please fill below personal information, and click "Register". 
+Please fill below personal information, and click "Save". 
 <br>
-After registration, you are able to check registration info & find friend.
+After saving personal details, you are able to check personal info & find friend.
 
 {% else %}
 You have not logged in. Click here to login: <a href="/login">Log in</a>
@@ -24,7 +24,7 @@ You have not logged in. Click here to login: <a href="/login">Log in</a>
     <input type="text" id="address" name="address" required><br><br>
 
 
-    <input type="submit" value="Register">
+    <input type="submit" value="Save">
 </form>
 
 

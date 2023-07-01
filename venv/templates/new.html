@@ -6,8 +6,15 @@
     <textarea name="content" rows="3" cols="40"></textarea>
     <br>
     <input type="submit" value="Send">
+    <input type="hidden" name="csrf_token" value="{{ session.csrf_token }}">
     <br>
     Note: your messages will be sent to the homepage chat forum, which is visible for all. 
+    <br>
+    <a href="/">Back to homepage</a>
+    <br>
+    <a href="/registered">Back to registration info page</a>
+
+    
 </form>
 
 {% endblock %}
