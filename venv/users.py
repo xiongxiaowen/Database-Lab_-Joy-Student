@@ -1,9 +1,9 @@
 import os
 from db import db
-from flask import session
+from flask import session, abort, request
 from werkzeug.security import check_password_hash, generate_password_hash
 from sqlalchemy import text
-
+import secrets
 
 
 def login(username, password):
@@ -15,6 +15,7 @@ def login(username, password):
     else:
         if check_password_hash(user.password, password):
             session["user_id"] = user.id
+            session["csrf_token"] = secrets.token_hex(16)
             return True
         else:
             return False
@@ -54,5 +55,9 @@ def delete_user(user_id):
     sql = text("UPDATE usersinfo SET degree_program = NULL, faculty = NULL, address = NULL WHERE user_id = :user_id")
     db.session.execute(sql, {"user_id": user_id})
     db.session.commit()
+
+def check_csrf():
+    if session["csrf_token"] != request.form["csrf_token"]:
+        abort(403)
 
 

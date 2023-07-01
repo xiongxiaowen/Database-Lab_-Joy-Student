@@ -3,7 +3,7 @@ from flask import render_template, request, redirect, session
 from werkzeug.security import generate_password_hash
 import users, messages, register_user_info, like, friend
 from register_user_info import get_user_by_id
-from users import get_user_by_id
+from users import get_user_by_id, check_csrf
 
 @app.route("/")
 def index():
@@ -20,6 +20,9 @@ def new():
 @app.route("/send", methods=["POST"])
 def send_message():
     content = request.form["content"]
+    if len(content) > 3000:
+        return render_template("error.html", error="Viesti on liian pitkä") 
+
     if messages.send(content):
         return redirect("/")
     else:
@@ -106,6 +109,7 @@ def edit(user_id):
         user = users.get_user_by_id(user_id)
         return render_template("edit.html", user=user)
     if request.method == "POST":
+        users.check_csrf()
         username = request.form["username"]
         password = request.form["password"]
         users.update_user(user_id, username, password)
@@ -119,6 +123,7 @@ def update():
             user_info = register_user_info.get_user_by_id(user_id)
             return render_template("update.html", user_info=user_info)
         elif request.method == "POST":
+            users.check_csrf()
             name = request.form["name"]
             degree_program = request.form["degree_program"]
             faculty = request.form["faculty"]
@@ -154,7 +159,11 @@ def add_friend():
     if not friend_id:
         # Handle the case when the friend ID is not provided
         return redirect("/registered")
-        
+
+    if not friend_id.isdigit():
+        # Handle the case when the friend ID is not a valid integer
+        return render_template("error.html", message="Invalid friend ID. Please enter a numeric value.") 
+               
     if "user_id" in session:
         friend_exists = users.get_user_by_id(friend_id)
         if friend_exists:
