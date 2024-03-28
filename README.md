@@ -4,7 +4,7 @@ forum chatting and adding friends, etc.
 
 
 
-Lopullinen palautus/ Final submission: 
+# Lopullinen palautus/ Final submission: 
 
 The Joy Student system facilitate users below operations: 
 
@@ -77,7 +77,7 @@ Below are intermediate submissions
 
 
 
-Välipalautus 3/ Submission 3
+# Välipalautus 3/ Submission 3
 
 Add a new feature that users can send messages, which is similar as a chat application. requirements.txt and schema.sql files pushed to Github.
 
@@ -99,7 +99,7 @@ pip install -r ./requirements.txt
 
 
 
-Välipalautus 2/ Submission 2
+# Välipalautus 2/ Submission 2
 
 Programming work started after the 1st submission. Target is to program the application that it has a functional foundation. Few problems have been fixed by practice. For example, PostgreSQL database was not able to find the server after installation, configuring the database connections was hard in the beginning as the local servers can not display html pages. 
 
@@ -123,7 +123,7 @@ Navigate to the project file directory in local device, use command line enter f
 
 
 
-Välipalautus 1/ Submission 1  
+# Välipalautus 1/ Submission 1  
 The topic is to create a light student information management system, named Joy Student. 
 
 The system can be used by a school or university to manage student's data. Features of the application include:
