@@ -124,8 +124,7 @@ Navigate to the project file directory in local device, use command line enter f
 
 
 Välipalautus 1/ Submission 1  
-This public repository on GitHub was created for the practice work of course Tietokantasovellus. 
-The topic I choose is to create a simple student information management system, named Joy Student. 
+The topic is to create a light student information management system, named Joy Student. 
 
 The system can be used by a school or university to manage student's data. Features of the application include:
 1.  the user can log in and out, and create a new user account. 
@@ -137,8 +136,8 @@ The system can be used by a school or university to manage student's data. Featu
 
 This web application can be enhanced by adding further features or functions, like provide a field for submitting student's email address, 
 The language used in programming will be English. In order to ensure the language consistency, all documents in this course will also be in English.
-Hopefully this README.md file gives a good description of this web application. 
-If this topic is not appropriate according to the course requirement, please feel free to comment or suggest modifications. 
+
+
 
 
 
