@@ -6,7 +6,7 @@ forum chatting and adding friends, etc.
 
 # Lopullinen palautus/ Final submission: 
 
-The Joy Student system facilitate users below operations: 
+The Joy Student system facilitates below operations: 
 
 
 to create user account (username and password), 
@@ -40,7 +40,7 @@ to add another student as friend based on known User ID, being aware who is in t
 
 
 
-It contains 5 database tables.  Currently the program’s frame and main operations can work well. The user interface and appearance of the application are finished. The application works well in testing. If the user provides incorrect information, a clear notification will appear.
+It contains 5 database tables.  Currently the program’s frame and main operations work well. The user interface and appearance of the application are finished. The application works well in testing. If the user provides incorrect information, a clear notification will appear.
 
 The application can only be tested locally as follows: 
 
@@ -114,7 +114,7 @@ Structure and completed files till now:
 1.  app.py is the main module of the application, which launches the application. 
 2.  The module db.py takes care of things related to the database. In this application, this module determines the address of the database and creates a db object through which the database can be accessed.
 3.  The task of module routes.py is to process page requests. 
-4.  Users.py module is used to handle users data management.
+4.  Users.py module is used to handle user data management.
 5.  Error, index, login, register total 4 html pages created in templates folder. Result page after registration still to be done.
 6.  The connection between pages still to be done so that page is able to jump to next page. 
 
